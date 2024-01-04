@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqq4ac1mubgnd"]
+
+[ext_resource type="PackedScene" uid="uid://bxhbe78qn3rn4" path="res://ghost.fbx" id="1_4ltfs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2lhwg"]
+size = Vector3(0.5, 0.7, 0.5)
+
+[node name="Ghost" type="Area3D" groups=["ghost"]]
+
+[node name="obj" parent="." instance=ExtResource("1_4ltfs")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("BoxShape3D_2lhwg")

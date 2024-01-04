@@ -1,0 +1,178 @@
+[gd_scene load_steps=22 format=3 uid="uid://d1xb4i7j8rapp"]
+
+[ext_resource type="PackedScene" uid="uid://dpgjbi8bddywb" path="res://player.tscn" id="1_cpuxh"]
+[ext_resource type="Script" path="res://world.gd" id="1_ee1e2"]
+[ext_resource type="PackedScene" uid="uid://dqq4ac1mubgnd" path="res://ghost.tscn" id="3_kd8br"]
+[ext_resource type="PackedScene" uid="uid://dhye7uepip7l6" path="res://yes.tscn" id="3_vbtjt"]
+[ext_resource type="PackedScene" uid="uid://ce5uouh1lmfs8" path="res://no.tscn" id="4_p4jfa"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://joystick/virtual_joystick.tscn" id="6_38fqt"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_quwvt"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_fcf7u"]
+sky_material = SubResource("ProceduralSkyMaterial_quwvt")
+
+[sub_resource type="Environment" id="Environment_o60wv"]
+background_mode = 2
+sky = SubResource("Sky_fcf7u")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a0wu1"]
+albedo_color = Color(0.380392, 0.521569, 0.352941, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0de46"]
+material = SubResource("StandardMaterial3D_a0wu1")
+size = Vector3(15, 3, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4j6jl"]
+points = PackedVector3Array(-7.61905, -1.61905, -0.619048, 7.61905, 1.71429, 0.571429, 7.61905, 1.71429, -0.619048, -7.61905, 1.71429, 0.571429, 7.61905, -1.61905, 0.571429, 7.61905, -1.61905, -0.619048, -7.61905, 1.71429, -0.619048, -7.61905, -1.61905, 0.571429)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nlujn"]
+albedo_color = Color(0.380392, 0.521569, 0.352941, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kah37"]
+material = SubResource("StandardMaterial3D_nlujn")
+size = Vector3(1, 3, 30)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_daiwq"]
+points = PackedVector3Array(0.597442, 1.54847, 15.122, -0.621832, -1.62164, -15.122, 0.597442, -1.62164, -15.122, -0.621832, -1.62164, 15.122, -0.621832, 1.54847, -15.122, 0.597442, 1.54847, -15.122, 0.597442, -1.62164, 15.122, -0.621832, 1.54847, 15.122)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hxwij"]
+albedo_color = Color(0.819608, 0.454902, 0.254902, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tqqg1"]
+material = SubResource("StandardMaterial3D_hxwij")
+size = Vector2(15, 30)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_j0t5u"]
+points = PackedVector3Array(-7.7381, -0.238095, -15.2381, 7.97619, 0.238095, 15.2381, 7.97619, -0.238095, 15.2381, 7.97619, 0.238095, -15.2381, -7.7381, 0.238095, 15.2381, -7.7381, -0.238095, 15.2381, 7.97619, -0.238095, -15.2381, -7.7381, 0.238095, -15.2381)
+
+[sub_resource type="FontVariation" id="FontVariation_jlqcc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k5ak0"]
+albedo_color = Color(0.270588, 0.211765, 0.364706, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_iwcqv"]
+material = SubResource("StandardMaterial3D_k5ak0")
+text = "Apakah Ari Ganteng dan Baik Hati?"
+font = SubResource("FontVariation_jlqcc")
+font_size = 90
+
+[node name="World" type="Node" node_paths=PackedStringArray("joystick_right")]
+script = ExtResource("1_ee1e2")
+joystick_right = NodePath("GUI/Virtual Joystick Right")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_o60wv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.45917, -0.585724, 0.6679, 0.706492, 0.215021, 0.674266, -0.538546, 0.781469, 0.315078, 16.5724, 7.19752, 4.87828)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_cpuxh")]
+transform = Transform3D(1, -2.98023e-08, 0, 0, 1, 1.49012e-08, 0, -2.98023e-08, 1, -0.49678, -4.76837e-07, 12.8248)
+
+[node name="WallGroup" type="Node3D" parent="."]
+
+[node name="Front" type="MeshInstance3D" parent="WallGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.282, 1.503, -14.565)
+mesh = SubResource("BoxMesh_0de46")
+skeleton = NodePath("../Left")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WallGroup/Front"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallGroup/Front/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_4j6jl")
+
+[node name="Back" type="MeshInstance3D" parent="WallGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.282, 1.50283, 14.4346)
+mesh = SubResource("BoxMesh_0de46")
+skeleton = NodePath("../Left")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WallGroup/Back"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallGroup/Back/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_4j6jl")
+
+[node name="Right" type="MeshInstance3D" parent="WallGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.719, 1.517, -0.07)
+mesh = SubResource("BoxMesh_kah37")
+skeleton = NodePath("../Left")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WallGroup/Right"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallGroup/Right/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_daiwq")
+
+[node name="Left" type="MeshInstance3D" parent="WallGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.447, 1.517, -0.07)
+mesh = SubResource("BoxMesh_kah37")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WallGroup/Left"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallGroup/Left/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_daiwq")
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.376576, 0, 0)
+mesh = SubResource("PlaneMesh_tqqg1")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_j0t5u")
+
+[node name="Question" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999987, -0.0051487, 0, 0.0051487, 0.999987, 0, 5.30522, -8.701)
+mesh = SubResource("TextMesh_iwcqv")
+
+[node name="OptionNo" parent="." groups=["no"] instance=ExtResource("3_kd8br")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -2.51615, 0.524, -8.701)
+monitoring = false
+
+[node name="NoLabel" parent="OptionNo" instance=ExtResource("4_p4jfa")]
+transform = Transform3D(0.333333, 0, 0, 0, 0.333333, 0, 0, 0, 0.333333, 4.86374e-05, 0.849333, 0)
+skeleton = NodePath("../..")
+
+[node name="OptionYes" parent="." groups=["yes"] instance=ExtResource("3_kd8br")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 1.91146, 0.524444, -8.70146)
+monitoring = false
+
+[node name="YesLabel" parent="OptionYes" instance=ExtResource("3_vbtjt")]
+transform = Transform3D(0.333333, 0, 0, 0, 0.333333, 0, 0, 0, 0.333333, -0.000153482, 0.849252, 0.000154018)
+skeleton = NodePath("../..")
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="YesResult" type="Label" parent="GUI"]
+visible = false
+offset_left = 2.0
+offset_top = 206.0
+offset_right = 1152.0
+offset_bottom = 275.0
+theme_override_font_sizes/font_size = 50
+text = "Terima Kasih Telah Menjawab 💕💕💕💕"
+horizontal_alignment = 1
+
+[node name="Virtual Joystick Left" parent="GUI" instance=ExtResource("6_38fqt")]
+action_left = "left"
+action_right = "right"
+action_up = "forward"
+action_down = "back"
+
+[node name="Virtual Joystick Right" parent="GUI" instance=ExtResource("6_38fqt")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_top = -300.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+
+[connection signal="area_entered" from="OptionNo" to="." method="_on_option_no_area_entered"]
+[connection signal="area_entered" from="OptionYes" to="." method="_on_option_yes_area_entered"]

@@ -1,0 +1,189 @@
+[gd_scene load_steps=12 format=3 uid="uid://dpgjbi8bddywb"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_2ixxg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4e8c7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k886i"]
+albedo_color = Color(0.690196, 0.439216, 0.921569, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2dq75"]
+material = SubResource("StandardMaterial3D_k886i")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jatd0"]
+albedo_color = Color(0.827451, 0.407843, 0.32549, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_u346g"]
+material = SubResource("StandardMaterial3D_jatd0")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_i483y"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+
+[sub_resource type="Animation" id="Animation_d21by"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/WeaponPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D/WeaponPivot/WeaponMesh:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.412923, -0.371018, -0.602115)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D/WeaponPivot/WeaponMesh:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.150902, -0.0140261, 0.0930391)]
+}
+
+[sub_resource type="Animation" id="Animation_76w1q"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/WeaponPivot/WeaponMesh:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.13951, 0.072102, -0.586809)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D/WeaponPivot/WeaponMesh:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.00949265, 0.151252, -1.5086)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D/WeaponPivot:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 2.29753, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rrpif"]
+resource_name = "idle"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/WeaponPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D/WeaponPivot/WeaponMesh:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0.412923, -0.371018, -0.602115), Vector3(0.412923, -0.537588, -0.602115)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D/WeaponPivot/WeaponMesh:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(-0.150902, -0.0140261, 0.0930391), Vector3(-0.206941, -0.0410539, 0.274802)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4j5p6"]
+_data = {
+"RESET": SubResource("Animation_d21by"),
+"attack": SubResource("Animation_76w1q"),
+"idle": SubResource("Animation_rrpif")
+}
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_2ixxg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_4e8c7")
+
+[node name="BodyMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_2dq75")
+
+[node name="BodyArea" type="Area3D" parent="BodyMesh"]
+
+[node name="BodyCS" type="CollisionShape3D" parent="BodyMesh/BodyArea"]
+shape = SubResource("CapsuleShape3D_4e8c7")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.51292, 0)
+
+[node name="WeaponPivot" type="Node3D" parent="Camera3D"]
+
+[node name="WeaponMesh" type="MeshInstance3D" parent="Camera3D/WeaponPivot"]
+transform = Transform3D(0.0995773, -0.0907964, -0.00138663, 0.00918492, 0.98436, 0.015033, -4.19095e-09, -0.150968, 0.0988539, 0.412923, -0.371018, -0.602115)
+mesh = SubResource("BoxMesh_u346g")
+
+[node name="HitBox" type="Area3D" parent="Camera3D/WeaponPivot/WeaponMesh"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera3D/WeaponPivot/WeaponMesh/HitBox"]
+transform = Transform3D(1, 0, 0, -2.32831e-10, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_i483y")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4j5p6")
+}
+autoplay = "idle"
+playback_default_blend_time = 0.1
+
+[connection signal="area_entered" from="Camera3D/WeaponPivot/WeaponMesh/HitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
