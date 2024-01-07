@@ -54,6 +54,7 @@ func _on_option_no_area_entered(_area):
 func _on_option_yes_area_entered(_area):
 	yes_result.visible = true
 	button_restart.visible = true
+	button_jump.visible = false
 	button_hit.visible = false
 	button_hit.visible = false
 	joystick_right.visible = false

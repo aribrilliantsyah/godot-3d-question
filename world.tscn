@@ -59,12 +59,11 @@ points = PackedVector3Array(-7.7381, -0.238095, -15.2381, 7.97619, 0.238095, 15.
 
 [sub_resource type="FontVariation" id="FontVariation_jlqcc"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k5ak0"]
-albedo_color = Color(0.270588, 0.211765, 0.364706, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2xx5"]
 
 [sub_resource type="TextMesh" id="TextMesh_iwcqv"]
-material = SubResource("StandardMaterial3D_k5ak0")
-text = "Apakah Anda Bahagia Bersama Kang Ari"
+material = SubResource("StandardMaterial3D_g2xx5")
+text = "Isikan Pertanyaan ?"
 font = SubResource("FontVariation_jlqcc")
 font_size = 90
 
@@ -161,13 +160,12 @@ layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -214.0
-offset_right = -46.0
+offset_left = -168.0
 offset_bottom = 168.0
 grow_horizontal = 0
 
 [node name="ButtonExit" type="TouchScreenButton" parent="GUI/Exit"]
-position = Vector2(6.99999, 10)
+position = Vector2(-17, 7)
 scale = Vector2(0.300781, 0.300781)
 texture_normal = ExtResource("10_n32al")
 texture_pressed = ExtResource("11_beh2e")
@@ -180,17 +178,16 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -440.0
-offset_top = -227.0
-offset_right = -285.0
-offset_bottom = -42.0
+offset_left = -155.0
+offset_top = -92.5
+offset_bottom = 92.5
 grow_horizontal = 0
 grow_vertical = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 8
 size_flags_vertical = 4
 
 [node name="ButtonHit" type="TouchScreenButton" parent="GUI/Hit"]
-position = Vector2(6.99993, 20)
+position = Vector2(-222, 6.5)
 scale = Vector2(0.302734, 0.302734)
 texture_normal = ExtResource("9_jejdg")
 texture_pressed = ExtResource("10_ngrkg")
@@ -220,25 +217,24 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -589.0
-offset_top = -57.0
-offset_right = -434.0
-offset_bottom = 98.0
+offset_left = -145.0
+offset_top = -81.0
+offset_right = 10.0
+offset_bottom = 74.0
 grow_horizontal = 0
 grow_vertical = 2
+size_flags_horizontal = 8
 
 [node name="ButtonJump" type="TouchScreenButton" parent="GUI/Jump"]
-position = Vector2(-6, -3)
+position = Vector2(-333, 178)
 scale = Vector2(0.283203, 0.283203)
 texture_normal = ExtResource("7_m1yxc")
 texture_pressed = ExtResource("8_2xbg8")
 action = "jump"
 
 [node name="Virtual Joystick Left" parent="GUI" instance=ExtResource("6_38fqt")]
-offset_left = 140.0
-offset_top = -440.0
-offset_right = 440.0
-offset_bottom = -140.0
+offset_top = -300.0
+offset_bottom = 0.0
 action_left = "left"
 action_right = "right"
 action_up = "forward"
@@ -248,12 +244,13 @@ action_down = "back"
 anchors_preset = 3
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -440.0
-offset_top = -440.0
-offset_right = -140.0
-offset_bottom = -140.0
+offset_left = -300.0
+offset_top = -300.0
+offset_right = 0.0
+offset_bottom = 0.0
 grow_horizontal = 0
 size_flags_horizontal = 8
+size_flags_vertical = 8
 
 [node name="YesResult" type="Label" parent="GUI"]
 visible = false
@@ -262,19 +259,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -575.0
-offset_top = -106.5
-offset_right = 575.0
-offset_bottom = 106.5
+offset_left = -686.5
+offset_top = -168.0
+offset_right = 686.5
+offset_bottom = 168.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0.701961, 0.890196, 0.388235, 1)
-theme_override_colors/font_outline_color = Color(0.0431373, 0.34902, 0.192157, 1)
-theme_override_font_sizes/font_size = 80
-text = "Terima Kasih Telah Menjawab
-Senang Bisa Sedekat Ini 💕💕💕💕
- Tidak Terasa Sudah 2024"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "Ucapan Terima Kasih atau Lainnya"
 horizontal_alignment = 1
 
 [connection signal="area_entered" from="OptionNo" to="." method="_on_option_no_area_entered"]
